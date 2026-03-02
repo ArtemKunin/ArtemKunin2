@@ -1,29 +1,6 @@
 #include <iostream>
 #include <cmath>
-#include "Tringle.h"
-/**
- * @brief Считывает значение координаты введенное с клавиатуры
- * @param report - строка информации
- * @return считанное знаначение
- */
-double getValue(std::string report = "");
-/**
- * @brief точка входа в программу
- * @return 0, если программа выполнена корректно
- */
-int main()
-{
-    double x1 = getValue("Введите x1: ");
-    double y1 = getValue("Введите y1: ");
-    double x2 = getValue("Введите x2: ");
-    double y2 = getValue("Введите y2: ");
-    double x3 = getValue("Введите x3: ");
-    double y3 = getValue("Введите y3: ");
-    Triangle myTriangle(x1, y1, x2, y2, x3, y3);
-    std::cout << "Точка H: " << myTriangle.findHeight() << std::endl;
-    std::cout << "Площадь равна " << myTriangle.getPlo() << std::endl;
-    return 0;
-}
+#include "tringle.h"
 Triangle::Triangle(const double x1, const double y1, const double x2, const double y2, const double x3, const double y3)
 {
     this->x1 = x1;
@@ -38,10 +15,10 @@ Triangle::Triangle(const double x1, const double y1, const double x2, const doub
         exit(1);
     }
     if ((x3 - x1) * (y2 - y1) - (y3 - y1) * (x2 - x1) == 0)
-	{
-		std::cout << "Ошибка: Треугольник не существует!" << std::endl;
-		exit(1);
-	}
+    {
+        std::cout << "Ошибка: Треугольник не существует!" << std::endl;
+        exit(1);
+    }
 }
 double Triangle::findHeight() const
 {
