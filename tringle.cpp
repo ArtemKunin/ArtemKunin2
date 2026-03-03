@@ -1,49 +1,78 @@
 #include <iostream>
 #include <cmath>
 #include "tringle.h"
-Triangle::Triangle(const double x1, const double y1, const double x2, const double y2, const double x3, const double y3)
+Point::Point(double x, double y)
 {
-    this->x1 = x1;
-    this->y1 = y1;
-    this->x2 = x2;
-    this->y2 = y2;
-    this->x3 = x3;
-    this->y3 = y3;
+    this->x = x;
+    this->y = y;
+}
+double Point::getX() const
+{
+    return this->x;
+}
+double Point::getY() const
+{
+    return this->y;
+}
+bool Point::operator==(Point p) const
+{
+    if (this->x == p.x && this->y == p.y)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+bool Point::operator!=(Point p) const
+{
+    if (this->x != p.x || this->y != p.y)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+Triangle::Triangle(Point p1, Point p2, Point p3)
+{
+    this->p1 = p1;
+    this->p2 = p2;
+    this->p3 = p3;
+    if (p1 == p2 || p2 == p3 || p1 == p3)
+    {
+        std::cout << "Ошибка: Точки совпадают!" << std::endl;
+        exit(1);
+    }
     if (this->getPlo() == 0)
     {
-        std::cout << "Ошибка! Треугольник не существует!" << std::endl;
+        std::cout << "Ошибка: Треугольник не существует." << std::endl;
         exit(1);
     }
-    if ((x3 - x1) * (y2 - y1) - (y3 - y1) * (x2 - x1) == 0)
+    double check = (p3.getX() - p1.getX()) * (p2.getY() - p1.getY()) - (p3.getY() - p1.getY()) * (p2.getX() - p1.getX());
+    if (check == 0)
     {
-        std::cout << "Ошибка: Треугольник не существует!" << std::endl;
+        std::cout << "Ошибка! Третья точка лежит на той же прямой, что и первые две!" << std::endl;
         exit(1);
     }
 }
-double Triangle::findHeight() const
+
+Point Triangle::getPointH() const
 {
-    double BCx = x3 - x2;
-    double BCy = y3 - y2;
-    double BAx = x1 - x2;
-    double BAy = y1 - y2;
+    double BCx = p3.getX() - p2.getX();
+    double BCy = p3.getY() - p2.getY();
+    double BAx = p1.getX() - p2.getX();
+    double BAy = p1.getY() - p2.getY();
     double t = (BAx * BCx + BAy * BCy) / (BCx * BCx + BCy * BCy);
-    double hx = x2 + t * BCx;
-    double hy = y2 + t * BCy;
-    return sqrt((hx - x1) * (hx - x1) + (hy - y1) * (hy - y1));
+    double hx = p2.getX() + t * BCx;
+    double hy = p2.getY() + t * BCy;
+    return Point(hx, hy);
 }
+
 double Triangle::getPlo() const
 {
-    return fabs((x2 - x1) * (y3 - y1) - (x3 - x1) * (y2 - y1)) / 2.0;
-}
-double getValue(std::string report)
-{
-    std::cout << report << std::endl;
-    double value = 0;
-    std::cin >> value;
-    if (std::cin.fail())
-    {
-        std::cout << "Ошибка, введено неверное значение!\n";
-        exit(1);
-    }
-    return value;
+    return fabs((p2.getX() - p1.getX()) * (p3.getY() - p1.getY()) - (p3.getX() - p1.getX()) * (p2.getY() - p1.getY())) / 2.0;
 }
