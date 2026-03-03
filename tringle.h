@@ -1,41 +1,73 @@
 /**
- * @brief класс треугольник
+ * @brief Класс Точка
+ */
+class Point
+{
+private:
+    /**
+     * @brief Координата X
+     */
+    double x;
+    /**
+     * @brief Координата Y
+     */
+    double y;
+public:
+    /**
+     * @brief Конструктор точки
+     */
+    Point(double x = 0, double y = 0);
+
+    /**
+     * @brief Получение координаты X
+     */
+    double getX() const;
+
+    /**
+     * @brief Получение координаты Y
+     */
+    double getY() const;
+    /**
+     * @brief Проверка на равенство оператора
+     */
+    bool operator==(Point p) const;
+    /**
+     * @brief Проверка на неравенство оператора
+     */
+    bool operator!=(Point p) const;
+};
+/**
+ * @brief Класс треугольник
  */
 class Triangle
 {
 private:
     /**
-     * @brief координаты точки A
+     * @brief Первая вершина
      */
-    double x1, y1;
+    Point p1;
     /**
-     * @brief координаты точки B
+     * @brief Вторая вершина
      */
-    double x2, y2;
+    Point p2;
     /**
-     * @brief координаты точки C
+     * @brief Третья вершина
      */
-    double x3, y3;
-
+    Point p3;
 public:
     /**
-     * @brief конструктор
-     * @param x1 - 1 координата точки A
-     * @param y1 - 2 координата точки A
-     * @param x2 - 1 координата точки B
-     * @param y2 - 2 координата точки B
-     * @param x3 - 1 координата точки C
-     * @param y3 - 2 координата точки C
+     * @brief Конструктор
+     * @param p1 - первая точка
+     * @param p2 - вторая точка
+     * @param p3 - третья точка
      */
-    Triangle(const double x1, const double y1, const double x2, const double y2, const double x3, const double y3);
-
+    Triangle(Point p1, Point p2, Point p3);
     /**
-     * @brief нахождение координаты точки H высоты AH,опущенной из вершины A
+     * @brief Нахождение координат точки H
      */
-    double findHeight() const;
-
+    Point getPointH() const;
     /**
-     * @brief расчет площади прямоугольника
+     * @brief Расчет площади треугольника
      */
     double getPlo() const;
 };
