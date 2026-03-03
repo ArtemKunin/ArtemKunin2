@@ -1,5 +1,6 @@
 #include <iostream>
 #include "tringle.h"
+#include "point.h"
 /**
  * @brief Считывает значение, введенное с клавиатуры
  * @param report - строка информации
