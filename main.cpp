@@ -1,14 +1,13 @@
 #include <iostream>
-#include <cmath>
 #include "tringle.h"
 /**
- * @brief Считывает значение координаты введенное с клавиатуры
+ * @brief Считывает значение, введенное с клавиатуры
  * @param report - строка информации
- * @return считанное знаначение
+ * @return считанное значение
  */
 double getValue(std::string report = "");
 /**
- * @brief точка входа в программу
+ * @brief Точка входа в программу
  * @return 0, если программа выполнена корректно
  */
 int main()
@@ -19,14 +18,18 @@ int main()
     double y2 = getValue("Введите y2: ");
     double x3 = getValue("Введите x3: ");
     double y3 = getValue("Введите y3: ");
-    Triangle myTriangle(x1, y1, x2, y2, x3, y3);
-    std::cout << "Точка H: " << myTriangle.findHeight() << std::endl;
-    std::cout << "Площадь равна " << myTriangle.getPlo() << std::endl;
+    Point p1(x1, y1);
+    Point p2(x2, y2);
+    Point p3(x3, y3);
+    Triangle myTriangle(p1, p2, p3);
+    Point H = myTriangle.getPointH();
+    std::cout << "Координаты точки H: X = " << H.getX() << ", Y = " << H.getY() << std::endl;
+    std::cout << "Площадь равна: " << myTriangle.getPlo() << std::endl;
     return 0;
 }
 double getValue(std::string report)
 {
-    std::cout << report << std::endl;
+    std::cout << report;
     double value = 0;
     std::cin >> value;
     if (std::cin.fail())
