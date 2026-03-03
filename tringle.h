@@ -1,41 +1,5 @@
-/**
- * @brief Класс Точка
- */
-class Point
-{
-private:
-    /**
-     * @brief Координата X
-     */
-    double x;
-    /**
-     * @brief Координата Y
-     */
-    double y;
-public:
-    /**
-     * @brief Конструктор точки
-     */
-    Point(double x = 0, double y = 0);
-
-    /**
-     * @brief Получение координаты X
-     */
-    double getX() const;
-
-    /**
-     * @brief Получение координаты Y
-     */
-    double getY() const;
-    /**
-     * @brief Проверка на равенство оператора
-     */
-    bool operator==(Point p) const;
-    /**
-     * @brief Проверка на неравенство оператора
-     */
-    bool operator!=(Point p) const;
-};
+#pragma once
+#include "point.h"
 /**
  * @brief Класс треугольник
  */
@@ -54,6 +18,7 @@ private:
      * @brief Третья вершина
      */
     Point p3;
+
 public:
     /**
      * @brief Конструктор
@@ -62,10 +27,12 @@ public:
      * @param p3 - третья точка
      */
     Triangle(Point p1, Point p2, Point p3);
+
     /**
      * @brief Нахождение координат точки H
      */
     Point getPointH() const;
+
     /**
      * @brief Расчет площади треугольника
      */
