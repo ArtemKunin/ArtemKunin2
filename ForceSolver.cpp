@@ -1,6 +1,7 @@
 #include "ForceSolver.h"
 #include <iostream>
 #include <cstdlib>
+#include <cfloat>
 double ForceSolver::solve(const double a, const double b, const double step, double (*f)(double)) const
 {
     if (a >= b)
@@ -14,7 +15,7 @@ double ForceSolver::solve(const double a, const double b, const double step, dou
         exit(1);
     }
     double x = a;
-    while (x <= b)
+    while (x <= b + DBL_EPSILON)
     {
         if (f(x) * f(x + step) <= 0)
         {
