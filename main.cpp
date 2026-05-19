@@ -47,7 +47,7 @@ int main()
     if (n > 0)
     {
         cout << "Введите " << n << " элементов вектора (через пробел или Enter): " << endl;
-        for (int i = 0; i < n; ++i)
+        for (size_t i = 0; i < static_cast<size_t>(n); ++i)
         {
             int val = get_choice();
             collection.insertAt(collection.get_size(), val);
